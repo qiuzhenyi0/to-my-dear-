@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彤彤大小姐 生日快樂！</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        min-height: 100vh;
+        overflow-x: hidden;
+        color: #6b7280;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header {
+        margin: 50px 0;
+        animation: fadeInDown 2s ease-out;
+    }
+
+    .title {
+        font-size: 3.5em;
+        color: #8b9dc3;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .title:hover {
+        transform: scale(1.05);
+        color: #a8b8d8;
+    }
+
+    .subtitle {
+        font-size: 1.2em;
+        color: #9ca3af;
+        margin-bottom: 30px;
+    }
+
+    .cake-container {
+        position: relative;
+        margin: 50px auto;
+        width: 300px;
+        height: 300px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .cake-container:hover {
+        transform: scale(1.1);
+    }
+
+    .cake {
+        width: 200px;
+        height: 120px;
+        background: linear-gradient(45deg, #ddd6fe, #c7d2fe);
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 3px solid #a5b4fc;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .candle {
+        width: 6px;
+        height: 40px;
+        background: linear-gradient(to bottom, #fbbf24, #f59e0b);
+        position: absolute;
+        top: -40px;
+        border-radius: 3px;
+        animation: candleFlicker 2s infinite;
+    }
+
+    .candle:nth-child(1) { left: 30px; }
+    .candle:nth-child(2) { left: 50px; }
+    .candle:nth-child(3) { left: 70px; }
+    .candle:nth-child(4) { left: 90px; }
+    .candle:nth-child(5) { left: 110px; }
+    .candle:nth-child(6) { left: 130px; }
+    .candle:nth-child(7) { left: 150px; }
+
+    .flame {
+        width: 8px;
+        height: 10px;
+        background: radial-gradient(circle, #fbbf24, #f59e0b);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        position: absolute;
+        top: -10px;
+        left: -1px;
+        animation: flameFlicker 1.5s infinite alternate;
+    }
+
+    .interactive-section {
+        margin: 80px 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 1px solid rgba(139, 157, 195, 0.3);
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .card h3 {
+        color: #8b9dc3;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .birthday-message {
+        background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+        padding: 40px;
+        border-radius: 20px;
+        margin: 50px 0;
+        border: 2px solid #a5b4fc;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .message-text {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #6b7280;
+        position: relative;
+        z-index: 2;
+    }
+
+    .balloons {
+        position: fixed;
+        top: -100px;
+        animation: floatUp 8s infinite linear;
+        font-size: 3em;
+        z-index: 1000;
+    }
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        animation: confettiFall 3s infinite linear;
+        z-index: 1000;
+    }
+
+    .gift-box {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #c7d2fe, #a5b4fc);
+        border: 2px solid #8b9dc3;
+        border-radius: 10px;
+        margin: 0 auto 20px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .gift-box:hover {
+        transform: rotate(5deg) scale(1.1);
+    }
+
+    .gift-box::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 35px;
+        width: 10px;
+        height: 84px;
+        background: #8b9dc3;
+    }
+
+    .gift-box::after {
+        content: '';
+        position: absolute;
+        top: 35px;
+        left: -2px;
+        width: 84px;
+        height: 10px;
+        background: #8b9dc3;
+    }
+
+    .wish-button {
+        background: linear-gradient(45deg, #8b9dc3, #a5b4fc);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        margin: 10px;
+    }
+
+    .wish-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        background: linear-gradient(45deg, #a5b4fc, #8b9dc3);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .fade-in {
+        animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes candleFlicker {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    @keyframes flameFlicker {
+        0% { transform: rotate(-2deg); }
+        100% { transform: rotate(2deg); }
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) rotate(0deg); }
+        100% { transform: translateY(-100px) rotate(360deg); }
+    }
+
+    @keyframes confettiFall {
+        0% { 
+            transform: translateY(-100px) rotate(0deg);
+            opacity: 1;
+        }
+        100% { 
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+
+    .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #fbbf24;
+        border-radius: 50%;
+        animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+        .title {
+            font-size: 2.5em;
+        }
+        
+        .interactive-section {
+            grid-template-columns: 1fr;
+        }
+        
+        .container {
+            padding: 10px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title" onclick="createSparkles()">🎉 彤彤大小姐 🎉</h1>
+            <p class="subtitle">生日快樂！願妳的每一天都充滿歡笑與幸福 ✨</p>
+        </div>
+
+```
+    <div class="cake-container" onclick="blowCandles()">
+        <div class="cake">
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+        </div>
+    </div>
+
+    <div class="birthday-message">
+        <p class="message-text">
+            親愛的彤彤大小姐，<br>
+            在這個特別的日子裡，願所有的美好都圍繞著妳！<br>
+            願妳的笑容如陽光般燦爛，願妳的夢想都能實現。<br>
+            生日快樂，願妳永遠快樂健康！🎂💝
+        </p>
+    </div>
+
+    <div class="interactive-section">
+        <div class="card" onclick="showSurprise()">
+            <div class="gift-box"></div>
+            <h3>驚喜禮物</h3>
+            <p>點擊打開神秘驚喜！</p>
+        </div>
+
+        <div class="card" onclick="launchBalloons()">
+            <h3>🎈 放飛氣球</h3>
+            <p>點擊放飛生日氣球</p>
+        </div>
+
+        <div class="card" onclick="makeWish()">
+            <h3>🌟 許願時刻</h3>
+            <p>點擊許下生日願望</p>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button class="wish-button" onclick="showFireworks()">🎆 煙火慶祝</button>
+        <button class="wish-button" onclick="playMusic()">🎵 生日歌</button>
+        <button class="wish-button" onclick="sendLove()">💕 送上祝福</button>
+    </div>
+</div>
+
+<script>
+    let candlesBlown = false;
+    let musicPlaying = false;
+
+    function createSparkles() {
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }, i * 100);
+        }
+    }
+
+    function blowCandles() {
+        const flames = document.querySelectorAll('.flame');
+        const cake = document.querySelector('.cake');
+        
+        if (!candlesBlown) {
+            flames.forEach((flame, index) => {
+                setTimeout(() => {
+                    flame.style.opacity = '0';
+                    flame.style.transform = 'scale(0)';
+                }, index * 200);
+            });
+            
+            setTimeout(() => {
+                cake.style.background = 'linear-gradient(45deg, #e0e7ff, #ddd6fe)';
+                createConfetti();
+                alert('🎉 許願成功！彤彤大小姐的願望一定會實現的！');
+            }, 1500);
+            
+            candlesBlown = true;
+        } else {
+            // 重新點燃蠟燭
+            flames.forEach((flame) => {
+                flame.style.opacity = '1';
+                flame.style.transform = 'scale(1)';
+            });
+            cake.style.background = 'linear-gradient(45deg, #ddd6fe, #c7d2fe)';
+            candlesBlown = false;
+        }
+    }
+
+    function createConfetti() {
+        const colors = ['#8b9dc3', '#a5b4fc', '#c7d2fe', '#ddd6fe', '#fbbf24'];
+        
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }, i * 50);
+        }
+    }
+
+    function launchBalloons() {
+        const balloons = ['🎈', '🎀', '🌸', '✨', '💝'];
+        
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloons';
+                balloon.textContent = balloons[Math.floor(Math.random() * balloons.length)];
+                balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+                balloon.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(balloon);
+                
+                setTimeout(() => balloon.remove(), 8000);
+            }, i * 300);
+        }
+    }
+
+    function showSurprise() {
+        const surprises = [
+            '🎁 驚喜一：願彤彤大小姐永遠美麗動人！',
+            '🌟 驚喜二：願妳的每個夢想都閃閃發光！',
+            '💖 驚喜三：願友誼的花朵永遠盛開！',
+            '🦄 驚喜四：願妳像公主一樣快樂！',
+            '🌈 驚喜五：願妳的人生充滿彩虹色彩！'
+        ];
+        
+        const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+        alert(randomSurprise);
+        createSparkles();
+    }
+
+    function makeWish() {
+        const wishes = [
+            '✨ 願彤彤大小姐身體健康，笑口常開！',
+            '🌟 願妳在新的一歲裡收穫滿滿的幸福！',
+            '💫 願妳的生活像童話故事一樣美好！',
+            '🎯 願妳心中所想，皆能如願以償！',
+            '🌸 願妳永遠保持少女心，快樂每一天！'
+        ];
+        
+        const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+        
+        // 創建許願動畫
+        const wishElement = document.createElement('div');
+        wishElement.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #8b9dc3;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10000;
+            text-align: center;
+            font-size: 1.2em;
+            color: #6b7280;
+            animation: fadeIn 0.5s ease-in;
+            max-width: 400px;
+        `;
+        wishElement.innerHTML = `
+            <div>${randomWish}</div>
+            <button onclick="this.parentElement.remove()" style="
+                margin-top: 20px;
+                background: #8b9dc3;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 15px;
+                cursor: pointer;
+            ">收到 💝</button>
+        `;
+        
+        document.body.appendChild(wishElement);
+        createConfetti();
+    }
+
+    function showFireworks() {
+        // 創建煙火效果
+        const colors = ['#8b9dc3', '#a5b4fc', '#fbbf24', '#c7d2fe', '#ddd6fe'];
+        
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+                const firework = document.createElement('div');
+                firework.style.cssText = `
+                    position: fixed;
+                    width: 4px;
+                    height: 4px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: 50%;
+                    left: ${Math.random() * window.innerWidth}px;
+                    top: ${Math.random() * window.innerHeight}px;
+                    animation: sparkle 1s ease-out;
+                    z-index: 1000;
+                `;
+                document.body.appendChild(firework);
+                
+                setTimeout(() => firework.remove(), 1000);
+            }, i * 100);
+        }
+        
+        alert('🎆 煙火為彤彤大小姐綻放！生日快樂！');
+    }
+
+    function playMusic() {
+        if (!musicPlaying) {
+            alert('🎵 生日快樂歌正在為彤彤大小姐播放中... 🎶\n祝妳生日快樂～祝妳生日快樂～🎂');
+            musicPlaying = true;
+            
+            // 模擬音樂播放效果
+            const musicNotes = ['🎵', '🎶', '🎼', '🎹'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const note = document.createElement('div');
+                    note.textContent = musicNotes[Math.floor(Math.random() * musicNotes.length)];
+                    note.style.cssText = `
+                        position: fixed;
+                        font-size: 2em;
+                        left: ${Math.random() * window.innerWidth}px;
+                        top: ${Math.random() * window.innerHeight}px;
+                        animation: floatUp 3s ease-out;
+                        z-index: 1000;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(note);
+                    
+                    setTimeout(() => note.remove(), 3000);
+                }, i * 200);
+            }
+            
+            setTimeout(() => { musicPlaying = false; }, 4000);
+        }
+    }
+
+    function sendLove() {
+        const loveMessages = [
+            '💕 送上滿滿的愛與祝福給彤彤大小姐！',
+            '🌹 願妳被世界溫柔以待，生日快樂！',
+            '💖 友誼萬歲！願我們的友誼地久天長！',
+            '🥰 最美好的祝福送給最特別的妳！',
+            '✨ 願妳的生命中永遠充滿愛與歡樂！'
+        ];
+        
+        const randomLove = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+        
+        // 創建愛心飛舞效果
+        const hearts = ['💕', '💖', '💝', '🌸', '✨'];
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.cssText = `
+                    position: fixed;
+                    font-size: 2em;
+                    left: ${Math.random() * window.innerWidth}px;
+                    top: ${window.innerHeight + 50}px;
+                    animation: floatUp 4s ease-out;
+                    z-index: 1000;
+                    pointer-events: none;
+                `;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4000);
+            }, i * 200);
+        }
+        
+        alert(randomLove);
+    }
+
+    // 頁面載入時的歡迎效果
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            createSparkles();
+        }, 1000);
+        
+        // 自動放氣球
+        setTimeout(() => {
+            launchBalloons();
+        }, 3000);
+    });
+
+    // 滑鼠移動時的微妙效果
+    let mouseTrail = [];
+    document.addEventListener('mousemove', function(e) {
+        if (mouseTrail.length > 10) {
+            mouseTrail.shift();
+        }
+        
+        mouseTrail.push({x: e.clientX, y: e.clientY});
+    });
+</script>
+```
+
+</body>
+</html>
